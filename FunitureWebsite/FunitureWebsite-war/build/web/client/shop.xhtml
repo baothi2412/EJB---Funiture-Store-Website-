@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:insert name="header">
+            <ui:include src="../header.xhtml"/>
+        </ui:insert>
+
+        <section class="shop-banner-section" style="background-image:url(../resources/images/background/8.jpg);">
+            <div class="auto-container">
+
+                <!-- Content Box -->
+                <div class="content-box">
+                    <div class="box-inner">
+                        <h2>Modern Furniture</h2>
+                        <div class="text">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative.</div>
+                        <a href="../home.xhtml" class="theme-btn btn-style-one"><span class="txt">purchase now</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!--End Shop Banner Section-->
+
+        <!--Shop Features Section-->
+        <section class="shop-features-section">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <!--Feature Block-->
+                    <div class="shop-feature-block col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <span class="icon flaticon-delivery-truck"></span>
+                            </div>
+                            <h3><a href="#">Free Shipping</a></h3>
+                            <div class="text">Duis aute irure dolor in reprehend erit in voluptate velit esse cillu.</div>
+                        </div>
+                    </div>
+
+                    <!--Feature Block-->
+                    <div class="shop-feature-block col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <span class="icon flaticon-tag"></span>
+                            </div>
+                            <h3><a href="#">Sale 15% Off</a></h3>
+                            <div class="text">Duis aute irure dolor in reprehend erit in voluptate velit esse cillu.</div>
+                        </div>
+                    </div>
+
+                    <!--Feature Block-->
+                    <div class="shop-feature-block col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <span class="icon flaticon-store-new-badges"></span>
+                            </div>
+                            <h3><a href="#">New Arriaval</a></h3>
+                            <div class="text">Duis aute irure dolor in reprehend erit in voluptate velit esse cillu.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--End Shop Features Section-->
+
+        <!--Shop Section-->
+        <section class="shop-section">
+            <div class="auto-container">
+                <!--Sec Title-->
+                <div class="title-box">
+                    <h2>Featured Products</h2>
+                </div>
+
+                <div class="row clearfix">
+
+                    <c:forEach items="#{productsMB.showAllProducts()}" var="item">
+                        <div class="shop-item col-lg-3 col-md-6 col-sm-12">
+                            <div class="inner-box">
+                                <div class="image">
+                                    <a href="product-detail.html" action="#{productsMB.findProductforUpdate(item.productID)}"/>
+                                    <h:graphicImage value="../admin/resources/image/products/#{item.image}" alt="" style="width:500px"/>
+                                    <div class="overlay-box">
+                                        <ul class="option-box">
+                                            <li>
+                                                <h:form>
+                                                    <h:commandLink action="#{cartProcessMB.addCart1(item.productID)}" styleClass="fa fa-shopping-bag">
+                                                    </h:commandLink>
+                                                </h:form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tag-banner">New</div>
+                                </div>
+                                <h:form>
+                                    <div class="lower-content">
+                                        <h3>
+                                            <h:commandLink action="#{productsMB.findProductforDetail(item.productID)}">
+                                                <h:outputText value="#{item.productName}" />
+                                            </h:commandLink>
+                                        </h3>
+                                        <div class="price">
+                                            <h:outputText value="#{item.unitPrice}" />VND
+                                        </div>
+                                    </div>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </c:forEach>
+
+
+                </div>
+
+                <div class="shop-pagination">
+                    <ul class="clearfix">
+                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <ui:insert name="bottom">
+            <ui:include src="../footter.xhtml"/>
+        </ui:insert>
+        <script src="../resources/js/script.js"></script>
+    </h:body>
+</html>
